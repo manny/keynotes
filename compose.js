@@ -1,14 +1,14 @@
-/*
- * i
-var canvas = document.getElementById('screen'); //800 x 350
-var ctx = canvas.getContext('2d');
-*/
 var note = new notes();
+var Canvas = require('./node-canvas/lib/canvas')
+  , canvas = new Canvas(800, 350)
+  , ctx = canvas.getContext('2d')
+  , http = require('http');
+drawStaff();
+console.log("drawing staff");
 var five = require("./johnny-five"),
     board,led, button;
 
 board = new five.Board();
-
 board.on("ready", function() {
 
   // Create a new `button` hardware instance.
@@ -88,6 +88,8 @@ board.on("ready", function() {
   });
   clear.on("down", function() {
 	console.log("clear");  
+	//drawStaff();
+	/*
 	ctx.clearRect(0, 0, 800, 350);       
 	ctx.lineWidth=2;
 	ctx.strokeStyle="black";
@@ -120,50 +122,54 @@ board.on("ready", function() {
 	ctx.fillStyle = "black";
 	ctx.fillText("Ardu-KeyNotes", 300, 60);
 	note.i = 0;
-
+	*/
   });
 });
 //console.log(music.length);
 //console.log(music);
-
+/*
 var Canvas = require('./node-canvas/lib/canvas')
   , canvas = new Canvas(800, 350)
   , ctx = canvas.getContext('2d')
   , http = require('http');
+*/
 //var title = prompt("Enter Song Title");    
+function drawStaff(){
 
+	ctx.clearRect(0, 0, 800, 350);       
+	ctx.lineWidth=2;
+	ctx.strokeStyle="black";
+	ctx.beginPath();
+	ctx.moveTo(60, 120);
+	ctx.lineTo(740, 120);
+	ctx.moveTo(60, 140);
+	ctx.lineTo(740, 140);
+	ctx.moveTo(60, 160);
+	ctx.lineTo(740, 160);
+	ctx.moveTo(60, 180);
+	ctx.lineTo(740, 180);
+	ctx.moveTo(60, 200);
+	ctx.lineTo(740, 200);
+	//vertical lines
+	ctx.moveTo(60,120);
+	ctx.lineTo(60, 200);
+	ctx.moveTo(400, 120);
+	ctx.lineTo(400, 200);
+	ctx.moveTo(225, 120);
+	ctx.lineTo(225, 200);
+	ctx.moveTo(575, 120);
+	ctx.lineTo(575, 200);
+	ctx.moveTo(740, 120);
+	ctx.lineTo(740, 200);
 
-ctx.lineWidth=2;
-ctx.strokeStyle="black";
-ctx.beginPath();
-ctx.moveTo(60, 120);
-ctx.lineTo(740, 120);
-ctx.moveTo(60, 140);
-ctx.lineTo(740, 140);
-ctx.moveTo(60, 160);
-ctx.lineTo(740, 160);
-ctx.moveTo(60, 180);
-ctx.lineTo(740, 180);
-ctx.moveTo(60, 200);
-ctx.lineTo(740, 200);
-//vertical lines
-ctx.moveTo(60,120);
-ctx.lineTo(60, 200);
-ctx.moveTo(400, 120);
-ctx.lineTo(400, 200);
-ctx.moveTo(225, 120);
-ctx.lineTo(225, 200);
-ctx.moveTo(575, 120);
-ctx.lineTo(575, 200);
-ctx.moveTo(740, 120);
-ctx.lineTo(740, 200);
+	ctx.stroke();
 
-ctx.stroke();
-
-ctx.font = "bold 20pt Arial";
-ctx.fillStyle = "black";
-ctx.fillText("Ardu-KeyNotes", 300, 60);
-
+	ctx.font = "bold 20pt Arial";
+	ctx.fillStyle = "black";
+	ctx.fillText("Ardu-KeyNotes", 300, 60);
+	note.i = 0;
+	console.log("end of method");
+}
 
 
 function notes(){
@@ -352,6 +358,3 @@ http.createServer(function (req, res) {
     + '<img src="' + canvas.toDataURL() + '" />');
 }).listen(3000);
 console.log('Server started on port 3000');
-/*window.addEventListener('keypress', function(event) {Key.onKeypress(event); }, false); 
-window.addEventListener('keyup', function(event) {Key.onKeyup(event); }, false);
-window.addEventListener('keydown', function(event) {Key.onKeydown(event); }, false);*/
