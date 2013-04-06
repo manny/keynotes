@@ -10,7 +10,6 @@ var five = require("./johnny-five"),
 
 board = new five.Board();
 board.on("ready", function() {
-
   // Create a new `button` hardware instance.
   // This example allows the button module to
   // create a completely default instance
@@ -88,54 +87,10 @@ board.on("ready", function() {
   });
   clear.on("down", function() {
 	console.log("clear");  
-	//drawStaff();
-	/*
-	ctx.clearRect(0, 0, 800, 350);       
-	ctx.lineWidth=2;
-	ctx.strokeStyle="black";
-	ctx.beginPath();
-	ctx.moveTo(60, 120);
-	ctx.lineTo(740, 120);
-	ctx.moveTo(60, 140);
-	ctx.lineTo(740, 140);
-	ctx.moveTo(60, 160);
-	ctx.lineTo(740, 160);
-	ctx.moveTo(60, 180);
-	ctx.lineTo(740, 180);
-	ctx.moveTo(60, 200);
-	ctx.lineTo(740, 200);
-	//vertical lines
-	ctx.moveTo(60,120);
-	ctx.lineTo(60, 200);
-	ctx.moveTo(400, 120);
-	ctx.lineTo(400, 200);
-	ctx.moveTo(225, 120);
-	ctx.lineTo(225, 200);
-	ctx.moveTo(575, 120);
-	ctx.lineTo(575, 200);
-	ctx.moveTo(740, 120);
-	ctx.lineTo(740, 200);
-
-	ctx.stroke();
-
-	ctx.font = "bold 20pt Arial";
-	ctx.fillStyle = "black";
-	ctx.fillText("Ardu-KeyNotes", 300, 60);
-	note.i = 0;
-	*/
+	drawStaff();
   });
 });
-//console.log(music.length);
-//console.log(music);
-/*
-var Canvas = require('./node-canvas/lib/canvas')
-  , canvas = new Canvas(800, 350)
-  , ctx = canvas.getContext('2d')
-  , http = require('http');
-*/
-//var title = prompt("Enter Song Title");    
 function drawStaff(){
-
 	ctx.clearRect(0, 0, 800, 350);       
 	ctx.lineWidth=2;
 	ctx.strokeStyle="black";
@@ -183,98 +138,7 @@ function notes(){
 	
     this.checkNote = function(){
  	
-		board.on("ready", function(){
-			//led = new five.Led(13);
-			//led.strobe(100);
-			board.repl.inject({
-				button: button
-			});
-
-			button1.on("up", function(){
-				//console.log("down2");
-			});
-			button1.on("down", function(){
-				console.log("up2");
-				note.draw('G');
-			});
-		});
 			
-		/*
-	if(Key.isPressed(Key.G) && this.canPressG){
-            console.log("pressed g");
-            this.draw('G')
-            this.canPressG = false;
-        }
-        if(!Key.isDown(Key.G)){
-            this.canPressG = true;
-        }
-        if(Key.isPressed(Key.H) && this.canPressH){
-            console.log("pressed h");
-            this.draw('H');            
-            this.canPressH = false;
-        }
-        if(!Key.isDown(Key.H)){
-            this.canPressH = true;
-        }
-        if(Key.isPressed(Key.J) && this.canPressJ){
-            console.log("pressed j");
-            this.draw('J');
-            this.canPressJ = false;
-        }
-        if(!Key.isDown(Key.J)){
-            this.canPressJ = true;
-        }
-        if(Key.isPressed(Key.K) && this.canPressK){
-            console.log("pressed k");
-            this.draw('K');
-            this.canPressK = false;
-        }
-        if(!Key.isDown(Key.K)){
-            this.canPressK = true;
-        }
-        if(Key.isPressed(Key.L) && this.canPressL){
-            console.log("pressed l");
-            this.draw('L');
-            this.canPressL = false;
-        }
-        if(!Key.isDown(Key.L)){
-            this.canPressL = true;
-        }
-        if(Key.isPressed(Key.C)){
-            ctx.clearRect(0, 0, 800, 350);       
-            ctx.lineWidth=2;
-            ctx.strokeStyle="black";
-            ctx.beginPath();
-            ctx.moveTo(60, 120);
-            ctx.lineTo(740, 120);
-            ctx.moveTo(60, 140);
-            ctx.lineTo(740, 140);
-            ctx.moveTo(60, 160);
-            ctx.lineTo(740, 160);
-            ctx.moveTo(60, 180);
-            ctx.lineTo(740, 180);
-            ctx.moveTo(60, 200);
-            ctx.lineTo(740, 200);
-            //vertical lines
-            ctx.moveTo(60,120);
-            ctx.lineTo(60, 200);
-            ctx.moveTo(400, 120);
-            ctx.lineTo(400, 200);
-            ctx.moveTo(225, 120);
-            ctx.lineTo(225, 200);
-            ctx.moveTo(575, 120);
-            ctx.lineTo(575, 200);
-            ctx.moveTo(740, 120);
-            ctx.lineTo(740, 200);
-
-            ctx.stroke();
-
-            ctx.font = "bold 20pt Arial";
-            ctx.fillStyle = "black";
-            ctx.fillText("song", 330, 60);
-            this.i = 0;
-        }
-       */ 
     }
 
     this.draw = function(note){
@@ -282,28 +146,6 @@ function notes(){
             ctx.fillStyle = "black"
             ctx.beginPath();
             var y;
-			/*	
-			board.on("ready", function(){
-				//led = new five.Led(13);
-				//led.strobe(100);
-				button1 = new five.Button(9);
-				board.repl.inject({
-					button: button
-				});
-
-				button1.on("up", function(){
-					//console.log("down2");
-					y = g;
-				});
-				button1.on("down", function(){
-					//console.log("up2");
-					y=0;
-				});
-
-
-			});
-
-			*/
             if(note =='C') y = 149; //c
             if(note =='D') y = 141; //d
             if(note =='E') y = 131; //e 
@@ -321,28 +163,7 @@ function notes(){
             this.i++;
         }
     }
-}/*
-board = new five.Board();
-
-board.on("ready", function(){
-	//led = new five.Led(13);
-	//led.strobe(100);
-	button1 = new five.Button(9);
-	board.repl.inject({
-		button: button
-	});
-
-	button1.on("up", function(){
-		console.log("down2");
-	});
-	button1.on("down", function(){
-		console.log("up2");
-	});
-
-
-});
-*/
-//var note = new notes();
+}
 /*
 setInterval(function(){
     //note.checkNote();
